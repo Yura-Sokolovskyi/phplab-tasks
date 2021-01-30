@@ -35,8 +35,12 @@ function sayHelloArgument($arg)
  */
 function sayHelloArgumentWrapper($arg)
 {
-    // put your code here
+    if (!is_int($arg) and !is_string($arg) and !is_bool($arg)) {
 
+        throw new InvalidArgumentException('sayHelloArgumentWrapper function only
+                                                     accepts integers, strings or booleans. Input was: ' . $arg);
+
+    }
     return sayHelloArgument($arg);
 }
 
@@ -49,7 +53,7 @@ function sayHelloArgumentWrapper($arg)
 function countArguments()
 {
     return [
-        'argument_count'  => func_num_args(),
+        'argument_count' => func_num_args(),
         'argument_values' => func_get_args(),
     ];
 }
@@ -69,5 +73,12 @@ function countArguments()
  */
 function countArgumentsWrapper()
 {
-    // put your code here
+    if (!(count(array_filter(func_get_args(), fn ($e) => is_string($e))) == count(func_get_args()))) {
+
+        throw new InvalidArgumentException('countArgumentsWrapper function only
+                                                     accepts strings. Input was: ' . implode(', ', func_get_args()));
+
+    }
+
+    return countArguments(func_get_args());
 }
