@@ -66,17 +66,19 @@ function getUniqueValue(array $input)
  */
 function groupByTag(array $input)
 {
+
     array_multisort($input);
 
-    $newArr = [];
+    $newArr =[];
 
     foreach ($input as $item){
-        foreach ($item['tags'] as $tag){
-            $newArr[$tag][] = $item['name'];
-        }
+
+        $newArr = array_merge_recursive($newArr, array_combine ( $item['tags'] , array_fill(0, count($item['tags']), [$item['name']])));
+
     }
 
     ksort($newArr);
 
     return $newArr;
+
 }

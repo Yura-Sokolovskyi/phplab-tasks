@@ -11,7 +11,15 @@
  */
 function getUniqueFirstLetters(array $airports)
 {
-    // put your logic here
 
-    return ['A', 'B', 'C'];
+    $stateArr = array_column($airports, 'name');
+
+    $stateFirstLetter = array_map( fn($el) => substr($el,0,1), $stateArr);
+
+    $uniqueFirstLetters = array_unique($stateFirstLetter);
+
+    array_multisort($uniqueFirstLetters);
+
+    return $uniqueFirstLetters ;
+
 }
