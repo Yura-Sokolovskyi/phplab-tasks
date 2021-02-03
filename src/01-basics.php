@@ -42,11 +42,16 @@ function isLeapYear(int $year)
     if ($year < 1900) {
         throw new InvalidArgumentException('isLeapYear function only accepts year grater then 1900. 
                                                      Input year was: ' . $year);
-    } else if ($year % 4 == 0) {
+
+    } else if ($year % 4 == 0 && $year % 100 != 0 || $year % 400 == 0) {
+  //} else if (date('L', mktime(0, 0, 0, 1, 1, $year))) { Another solution
+
         return true;
-    } else {
-        return false;
+
     }
+
+    return false;
+
 
 }
 
