@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class SayHelloArgumentWrapperTest extends TestCase
 {
-    public function testPositive()
+    public function testNegative()
     {
         $this->expectException(InvalidArgumentException::class);
 

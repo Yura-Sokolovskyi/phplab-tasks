@@ -126,7 +126,13 @@ class Calculator
      */
     public function undo()
     {
-        // TODO implement undo logic here
+
+        if (count($this->intents) == 0) {
+            throw new \InvalidArgumentException('There are no operations that can be undid or ' .
+                                                          'the number of undoes exceeds the number of operations');
+        }
+
+        array_pop($this->intents);
 
         return $this;
     }
@@ -138,7 +144,11 @@ class Calculator
      */
     public function replay()
     {
-        // TODO implement replay logic here
+        if (count($this->intents) == 0) {
+            throw new \InvalidArgumentException('There are no operations that can replayed.');
+        }
+
+        $this->intents[] = end($this->intents);
 
         return $this;
     }
@@ -163,3 +173,5 @@ class Calculator
         return $result;
     }
 }
+
+

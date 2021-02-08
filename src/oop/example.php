@@ -1,11 +1,19 @@
 <?php
+
 use src\oop\Calculator;
+use src\oop\Commands\DivideCommand;
+use src\oop\Commands\ExponentCommand;
+use src\oop\Commands\MultiplyCommand;
 use src\oop\Commands\SubCommand;
 use src\oop\Commands\SumCommand;
+
 
 $calc = new Calculator();
 $calc->addCommand('+', new SumCommand());
 $calc->addCommand('-', new SubCommand());
+$calc->addCommand('*', new MultiplyCommand());
+$calc->addCommand('/', new DivideCommand());
+$calc->addCommand('**', new ExponentCommand());
 
 // You can use any operation for computing
 // will output 2
