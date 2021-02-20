@@ -36,4 +36,30 @@ $pdo->exec($sql);
 
 // TODO states
 
+$sql = <<<'SQL'
+CREATE TABLE `states` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`id`)
+);
+
+SQL;
+$pdo->exec($sql);
+
+
 // TODO airports
+$sql = <<<'SQL'
+CREATE TABLE `airports` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`code` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`city_id` int UNSIGNED,
+    `state_id` int UNSIGNED,
+    foreign key (`city_id`) references `cities`(`id`),
+    foreign key (`state_id`) references `states`(`id`),
+	`address` VARCHAR(200) NOT NULL COLLATE 'utf8_general_ci',
+	`timezone` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`id`)
+);
+SQL;
+$pdo->exec($sql);
